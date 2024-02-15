@@ -3,7 +3,7 @@ use std::collections::HashMap;
 struct Solution;
 
 impl Solution {
-    pub fn is_anagram(&self, s: String, t: String) -> bool {
+    pub fn is_anagram(s: String, t: String) -> bool {
         let mut hash_map: HashMap<char, u16> = HashMap::new();
 
         for c1 in s.chars() {
@@ -34,15 +34,17 @@ impl Solution {
 }
 
 pub fn run_tests() {
-    let sol = Solution {};
     assert_eq!(
-        sol.is_anagram("anagram".to_string(), "maragan".to_string()),
+        Solution::is_anagram("anagram".to_string(), "maragan".to_string()),
         true
     );
     assert_eq!(
-        sol.is_anagram("taufik".to_string(), "kiftua".to_string()),
+        Solution::is_anagram("taufik".to_string(), "kiftua".to_string()),
         true
     );
-    assert_eq!(sol.is_anagram("ab".to_string(), "b".to_string()), false);
-    assert_eq!(sol.is_anagram("".to_string(), "a".to_string()), false);
+    assert_eq!(
+        Solution::is_anagram("ab".to_string(), "b".to_string()),
+        false
+    );
+    assert_eq!(Solution::is_anagram("".to_string(), "a".to_string()), false);
 }
