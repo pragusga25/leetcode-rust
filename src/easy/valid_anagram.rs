@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub struct Solution;
+struct Solution;
 
 impl Solution {
     pub fn is_anagram(&self, s: String, t: String) -> bool {
@@ -29,7 +29,7 @@ impl Solution {
             };
         }
 
-        return hash_map.is_empty();
+        hash_map.is_empty()
     }
 }
 
