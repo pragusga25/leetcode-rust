@@ -1,4 +1,6 @@
 use super::Solution;
+// https://leetcode.com/problems/contains-duplicate/
+
 use std::collections::HashMap;
 
 impl Solution {
