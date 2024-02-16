@@ -39,7 +39,7 @@ impl Solution {
 
         // Build max heap from the heap
         let len = heap.len();
-        let index_start = (((len / 2) as f32).floor() as i32 + 1) as usize;
+        let index_start = ((len / 2) as usize) + 1;
         for i in (0..=index_start).rev() {
             Self::max_heapify(&mut heap, i);
         }
@@ -81,7 +81,7 @@ impl Solution {
     // Perform max heapify operation on the heap starting from index i
     fn max_heapify(heap: &mut VecDeque<Node>, i: usize) -> () {
         let len = heap.len();
-        let max_i_to_heapify = (((len / 2) as f32).floor() as i32 + 1) as usize;
+        let max_i_to_heapify = ((len / 2) as usize) + 1;
         if i > max_i_to_heapify || i >= len {
             return;
         }
