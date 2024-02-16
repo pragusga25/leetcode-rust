@@ -6,4 +6,5 @@ fn main() {
     easy::two_sum::run_tests();
 
     medium::group_anagrams::run_tests();
+    medium::top_k_frequent::run_tests();
 }
