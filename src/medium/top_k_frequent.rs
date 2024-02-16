@@ -3,7 +3,6 @@ use super::Solution;
 
 use std::collections::{HashMap, VecDeque};
 
-#[derive(Debug)]
 struct Node {
     num: i32,
     count: u32,
@@ -11,12 +10,14 @@ struct Node {
 
 impl Solution {
     pub fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
+        // HashMap to store frequency of each number
         let mut map: HashMap<i32, u32> = HashMap::new();
+        // VecDeque to store nodes with numbers and their frequencies
         let mut heap: VecDeque<Node> = VecDeque::new();
 
+        // Calculate frequencies of numbers and store them in the map
         for num in nums.into_iter() {
             let val = map.get(&num);
-
             match val {
                 Some(val) => {
                     map.insert(num, val + 1);
@@ -27,6 +28,7 @@ impl Solution {
             }
         }
 
+        // Convert map entries into nodes and push them into the heap
         for (key, value) in map.into_iter() {
             let node = Node {
                 count: value,
@@ -35,16 +37,15 @@ impl Solution {
             heap.push_back(node);
         }
 
-        // build max heap
+        // Build max heap from the heap
         let len = heap.len();
         let index_start = (((len / 2) as f32).floor() as i32 + 1) as usize;
-
         for i in (0..=index_start).rev() {
             Self::max_heapify(&mut heap, i);
         }
 
+        // Pop the root node (max frequency) k times and store the numbers in the result
         let mut res: Vec<i32> = Vec::new();
-
         for _ in 1..=k {
             let node = Self::pop_root(&mut heap);
             match node {
@@ -58,6 +59,7 @@ impl Solution {
         res
     }
 
+    // Pop the root node (max frequency) from the heap
     fn pop_root(heap: &mut VecDeque<Node>) -> Option<Node> {
         let last_element = heap.pop_back();
         if heap.len() == 0 {
@@ -76,6 +78,7 @@ impl Solution {
         front
     }
 
+    // Perform max heapify operation on the heap starting from index i
     fn max_heapify(heap: &mut VecDeque<Node>, i: usize) -> () {
         let len = heap.len();
         let max_i_to_heapify = (((len / 2) as f32).floor() as i32 + 1) as usize;
