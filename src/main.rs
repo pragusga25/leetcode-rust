@@ -8,4 +8,5 @@ fn main() {
     medium::group_anagrams::run_tests();
     medium::top_k_frequent::run_tests();
     medium::product_except_self::run_tests();
+    medium::is_valid_sudoku::run_tests();
 }
