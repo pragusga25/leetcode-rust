@@ -5,14 +5,16 @@ use std::collections::VecDeque;
 
 impl Solution {
     pub fn product_except_self(nums: Vec<i32>) -> Vec<i32> {
-        // Multiplication from left and rigt
+        // Initialize two deques to store products from the left and right sides respectively
         let len = nums.len();
         let mut mfl: VecDeque<i32> = VecDeque::with_capacity(len);
         let mut mfr: VecDeque<i32> = VecDeque::with_capacity(len);
 
+        // Push initial values (1) to the deques to handle edge cases
         mfl.push_back(1);
         mfr.push_back(1);
 
+        // Calculate products from the left and right sides
         for l in 0..len - 1 {
             let r = len - 1 - l;
             let prevl = mfl.back().unwrap();
@@ -25,6 +27,7 @@ impl Solution {
             mfr.push_front(prevr * numr);
         }
 
+        // Calculate the final result by multiplying corresponding elements from both deques
         let mut res: Vec<i32> = Vec::new();
 
         for i in 0..len {
