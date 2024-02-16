@@ -97,7 +97,6 @@ impl Solution {
                 }
 
                 if el.count > er.count {
-                    // Self::swap(heap, i, l);
                     heap.swap(i, l);
                     Self::max_heapify(heap, l);
                 } else {
