@@ -31,10 +31,9 @@ impl Solution {
     }
 
     fn sort_str(str: &String) -> String {
-        let str_slice = &str[..];
-        let mut chrs = str_slice.chars().collect::<Vec<char>>();
-        chrs.sort_by(|a, b| b.cmp(a));
-        chrs.into_iter().collect()
+        let mut chars = str.chars().collect::<Vec<char>>();
+        chars.sort();
+        chars.into_iter().collect()
     }
 }
 
