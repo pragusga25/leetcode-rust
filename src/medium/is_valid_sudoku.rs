@@ -4,6 +4,18 @@ use super::Solution;
 use std::collections::{HashMap, HashSet};
 
 impl Solution {
+    /// Determines if the given Sudoku board is valid.
+    ///
+    /// The function checks if the board satisfies the Sudoku rules:
+    /// each row, column, and 3x3 subgrid must contain the digits 1-9 without repetition.
+    ///
+    /// # Arguments
+    ///
+    /// * `board` - A 9x9 grid represented as a vector of vectors of characters.
+    ///
+    /// # Returns
+    ///
+    /// A boolean indicating whether the Sudoku board is valid or not.
     pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
         // HashMap to store sets of numbers for each row, column, and 3x3 box
         let mut map: HashMap<String, HashSet<char>> = HashMap::new();
@@ -25,57 +37,49 @@ impl Solution {
                 let key_row = format!("R_{}", i);
                 let key_col = format!("C_{}", j);
 
-                // Check if the current number violates the Sudoku rules in the box
-                let set_box = map.get_mut(&key_box);
-                match set_box {
-                    Some(set_box) => {
-                        if set_box.contains(&ch) {
-                            return false;
-                        }
-                        set_box.insert(ch);
-                    }
-                    None => {
-                        let mut hash_set: HashSet<char> = HashSet::with_capacity(9);
-                        hash_set.insert(ch);
-                        map.insert(key_box, hash_set);
-                    }
-                }
-
-                // Check if the current number violates the Sudoku rules in the row
-                let set_row = map.get_mut(&key_row);
-                match set_row {
-                    Some(set_row) => {
-                        if set_row.contains(&ch) {
-                            return false;
-                        }
-                        set_row.insert(ch);
-                    }
-                    None => {
-                        let mut hash_set: HashSet<char> = HashSet::with_capacity(9);
-                        hash_set.insert(ch);
-                        map.insert(key_row, hash_set);
-                    }
-                }
-
-                // Check if the current number violates the Sudoku rules in the column
-                let set_col = map.get_mut(&key_col);
-                match set_col {
-                    Some(set_col) => {
-                        if set_col.contains(&ch) {
-                            return false;
-                        }
-                        set_col.insert(ch);
-                    }
-                    None => {
-                        let mut hash_set: HashSet<char> = HashSet::with_capacity(9);
-                        hash_set.insert(ch);
-                        map.insert(key_col, hash_set);
+                for key in [key_box, key_row, key_col] {
+                    let is_valid = Self::is_valid(&mut map, &key, &ch);
+                    if !is_valid {
+                        return is_valid;
                     }
                 }
             }
         }
 
         true
+    }
+
+    /// Helper function to validate a character in a specific row, column, or box.
+    ///
+    /// It checks if the character already exists in the corresponding set.
+    /// If it doesn't exist, it inserts the character into the set.
+    ///
+    /// # Arguments
+    ///
+    /// * `map` - A mutable reference to a HashMap storing sets of characters for each key.
+    /// * `key` - The key indicating the row, column, or box.
+    /// * `ch` - The character to be validated and inserted into the set.
+    ///
+    /// # Returns
+    ///
+    /// A boolean indicating whether the character is valid and inserted successfully.
+    fn is_valid(map: &mut HashMap<String, HashSet<char>>, key: &String, ch: &char) -> bool {
+        let set = map.get_mut(key);
+        match set {
+            Some(set) => {
+                if set.contains(&ch) {
+                    return false;
+                }
+                set.insert(*ch);
+                true
+            }
+            None => {
+                let mut hash_set: HashSet<char> = HashSet::with_capacity(9);
+                hash_set.insert(*ch);
+                map.insert(key.to_owned(), hash_set);
+                true
+            }
+        }
     }
 }
 
