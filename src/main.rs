@@ -9,4 +9,5 @@ fn main() {
     medium::top_k_frequent::run_tests();
     medium::product_except_self::run_tests();
     medium::is_valid_sudoku::run_tests();
+    medium::longest_consecutive::run_tests();
 }
