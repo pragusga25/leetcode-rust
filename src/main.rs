@@ -12,4 +12,5 @@ fn main() {
     medium::is_valid_sudoku::run_tests();
     medium::longest_consecutive::run_tests();
     medium::min_stack::run_tests();
+    medium::eval_rpn::run_tests();
 }
