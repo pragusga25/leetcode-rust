@@ -3,25 +3,25 @@ use super::Solution;
 
 impl Solution {
     pub fn generate_parenthesis(n: i32) -> Vec<String> {
-        Self::generate("".to_owned(), n, n, n)
+        Self::gen_parenthesis("".to_owned(), n, 0, 0)
     }
 
-    fn generate(builder: String, n: i32, openers: i32, closers: i32) -> Vec<String> {
-        if openers > n || openers < 0 || closers > n || closers < 0 || closers < openers {
+    fn gen_parenthesis(builder: String, n: i32, openers: i32, closers: i32) -> Vec<String> {
+        if openers > n || closers > n || closers > openers {
             return vec![];
         }
 
-        if openers == 0 && closers == 0 {
+        if openers == n && closers == n {
             return vec![builder];
         }
 
         let mut builder1 = builder.to_owned();
         builder1.push_str("(");
-        let mut par1 = Self::generate(builder1, n, openers - 1, closers);
+        let mut par1 = Self::gen_parenthesis(builder1, n, openers + 1, closers);
 
         let mut builder2 = builder.to_owned();
         builder2.push_str(")");
-        let par2 = Self::generate(builder2, n, openers, closers - 1);
+        let par2 = Self::gen_parenthesis(builder2, n, openers, closers + 1);
 
         par1.extend(par2);
         par1

@@ -3,6 +3,7 @@ pub mod eval_rpn;
 pub mod generate_parenthesis;
 pub mod group_anagrams;
 pub mod is_valid_sudoku;
+pub mod letter_combinations;
 pub mod longest_consecutive;
 pub mod min_stack;
 pub mod product_except_self;

@@ -14,4 +14,5 @@ fn main() {
     medium::min_stack::run_tests();
     medium::eval_rpn::run_tests();
     medium::generate_parenthesis::run_tests();
+    medium::letter_combinations::run_tests();
 }
