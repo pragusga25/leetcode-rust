@@ -8,23 +8,23 @@ impl Solution {
         for ch in tokens.into_iter() {
             match &*ch {
                 "+" => {
-                    let num2 = stack.pop().unwrap_or_default();
-                    let num1 = stack.pop().unwrap_or_default();
+                    let num2 = stack.pop().unwrap();
+                    let num1 = stack.pop().unwrap();
                     stack.push(num1 + num2);
                 }
                 "-" => {
-                    let num2 = stack.pop().unwrap_or_default();
-                    let num1 = stack.pop().unwrap_or_default();
+                    let num2 = stack.pop().unwrap();
+                    let num1 = stack.pop().unwrap();
                     stack.push(num1 - num2);
                 }
                 "*" => {
-                    let num2 = stack.pop().unwrap_or_default();
-                    let num1 = stack.pop().unwrap_or_default();
+                    let num2 = stack.pop().unwrap();
+                    let num1 = stack.pop().unwrap();
                     stack.push(num1 * num2);
                 }
                 "/" => {
-                    let num2 = stack.pop().unwrap_or_default();
-                    let num1 = stack.pop().unwrap_or_default();
+                    let num2 = stack.pop().unwrap();
+                    let num1 = stack.pop().unwrap();
                     stack.push(num1 / num2);
                 }
                 ch => {
