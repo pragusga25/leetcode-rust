@@ -1,5 +1,6 @@
 struct Solution;
 pub mod eval_rpn;
+pub mod generate_parenthesis;
 pub mod group_anagrams;
 pub mod is_valid_sudoku;
 pub mod longest_consecutive;

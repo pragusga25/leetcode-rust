@@ -13,4 +13,5 @@ fn main() {
     medium::longest_consecutive::run_tests();
     medium::min_stack::run_tests();
     medium::eval_rpn::run_tests();
+    medium::generate_parenthesis::run_tests();
 }
