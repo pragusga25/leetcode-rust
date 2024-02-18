@@ -38,12 +38,10 @@ impl Solution {
         let d = digits.get(start).unwrap();
 
         for c in map.get(&d).unwrap() {
-            let mut new_builder = builder.to_owned();
-            new_builder.push_str(&*c.to_string());
             res.extend(Self::gen_letter_combinations(
                 map,
                 digits,
-                new_builder,
+                format!("{}{}", builder, c),
                 start + 1,
             ));
         }
