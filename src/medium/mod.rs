@@ -1,4 +1,5 @@
 struct Solution;
+pub mod combination_sum;
 pub mod eval_rpn;
 pub mod generate_parenthesis;
 pub mod group_anagrams;

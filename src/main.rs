@@ -15,4 +15,5 @@ fn main() {
     medium::eval_rpn::run_tests();
     medium::generate_parenthesis::run_tests();
     medium::letter_combinations::run_tests();
+    medium::combination_sum::run_tests();
 }
